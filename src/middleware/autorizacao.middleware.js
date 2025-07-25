@@ -1,23 +1,17 @@
-const jwt = require("jsonwebtoken");
-
-class AutenticacaoMiddleware{
-    static autenticarToken(req, res, next) {
-        const authHeader = req.headers["authorization"];
-        const token = authHeader && authHeader.split(" ")[1]; 
+class AutorizacaoMiddleware {
     
-        if (!token) {
-          return res.status(401).json({ msg: "Token de acesso não fornecido!" });
+    static autorizar(papeisPermitidos) {
+      return (requisicao, resposta, proximo) => {
+        // professor
+        const usuario = requisicao.usuario;
+  
+        if (!usuario || !papeisPermitidos.includes(usuario.papel)) {
+          return resposta.status(403).json({ msg: "Acesso não autorizado para este recurso!" });
         }
-    
-        jwt.verify(token, process.env.SECRET_KEY, (err, usuario) => {
-          if (err) {
-            return res.status(403).json({ msg: "Token de acesso não fornecido!" });
-          }
-    
-          req.usuario = usuario; 
-          next();
-        });
-      }
-}
-
-module.exports =  AutenticacaoMiddleware
+        proximo();
+      };
+    }
+  }
+  
+  module.exports = AutorizacaoMiddleware;
+  

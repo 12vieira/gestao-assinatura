@@ -1,0 +1,117 @@
+### Cadastro de usuário
+POST http://localhost:3001/usuarios
+Content-Type: application/json
+
+{
+    "nome":"Pedro Silva",
+    "email":"maria.silva@email.com",
+    "senha":"MinhaSenh@Segur@123",
+    "papel":"funcionario"
+}
+
+###
+
+### Login do usuário
+POST http://localhost:3001/login
+Content-Type: application/json
+
+{
+    "email": "maria.silva@email.com",
+    "senha": "MinhaSenh@Segur@123"
+}
+
+###
+
+### Perfil do usuário autenticado
+GET http://localhost:3001/usuarios/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiSm9hbyBTaWx2YSIsImVtYWlsIjoiam9hby5zaWx2YUBlbWFpbC5jb20iLCJwYXBlbCI6ImFkbWluIiwiaWQiOiI2OWEwZmMyYS1iOTQyLTQzZWYtOTUzOC0xMWRiYjAyZDE2OTMiLCJpYXQiOjE3NTM0NzIwMDUsImV4cCI6MTc1MzQ3MjkwNX0.GcK0UcLpHgs8a7wvE9N0WhTNKyR2ToOOu57Heqf1ggk
+
+
+### Listar revistas (assinante)
+GET http://localhost:3001/revistas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiTWFyaWEgU2lsdmEiLCJlbWFpbCI6Im1hcmlhLnNpbHZhQGVtYWlsLmNvbSIsInBhcGVsIjoiYXNzaW5hbnRlIiwiaWQiOiI2NjUxOWZmMi04MzZiLTQ3MTQtOTZjMy01YzUzZGQ3ZDM4YjUiLCJpYXQiOjE3NTM0NzU0MzQsImV4cCI6MTc1MzQ3NjMzNH0.VivgjKjiJZuvnDH5NZLAsGgREtxgdxijX-k-qllAIbk
+
+###
+
+### Detalhar revista (assinante)
+GET http://localhost:3001/revistas/1
+Authorization: Bearer <TOKEN_ASSINANTE>
+
+###
+
+### Criar revista (funcionário)
+POST http://localhost:3001/revistas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUGVkcm8gU2lsdmEiLCJlbWFpbCI6InBlZHJvLnNpbHZhQGVtYWlsLmNvbSIsInBhcGVsIjoiZnVuY2lvbmFyaW8iLCJpZCI6IjYwYzVhNmU1LTRiOWMtNGE0NC04ZTE1LWZmZTBlMmNjN2Y0NSIsImlhdCI6MTc1MzQ3NDQ5MSwiZXhwIjoxNzUzNDc1MzkxfQ.gDx6W0-biRf4NbwKrx_J3roMYoaVzHqD8yj8w3qxYM0
+
+{
+    "nome": "Revista Ciência Hoje",
+    "descricao": "Edição especial sobre avanços científicos",
+    "categoria": "Ciência",
+    "status": "ativa"
+}
+
+###
+
+### Atualizar revista (funcionário)
+PUT http://localhost:3001/revistas/1
+Content-Type: application/json
+Authorization: Bearer <TOKEN_FUNCIONARIO>
+
+{
+    "titulo": "Revista Ciência Hoje - Atualizada",
+    "descricao": "Edição revisada sobre avanços científicos",
+    "ano": 2024
+}
+
+###
+
+### Excluir revista (funcionário)
+DELETE http://localhost:3001/revistas/1
+Authorization: Bearer <TOKEN_FUNCIONARIO>
+
+
+
+
+### Listar assinaturas do usuário
+GET http://localhost:3001/usuario/66519ff2-836b-4714-96c3-5c53dd7d38b5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiTWFyaWEgU2lsdmEiLCJlbWFpbCI6Im1hcmlhLnNpbHZhQGVtYWlsLmNvbSIsInBhcGVsIjoiYXNzaW5hbnRlIiwiaWQiOiI2NjUxOWZmMi04MzZiLTQ3MTQtOTZjMy01YzUzZGQ3ZDM4YjUiLCJpYXQiOjE3NTM0NzU0MzQsImV4cCI6MTc1MzQ3NjMzNH0.VivgjKjiJZuvnDH5NZLAsGgREtxgdxijX-k-qllAIbk
+
+###
+
+### Detalhes da assinatura
+GET http://localhost:3001/assinaturas/1
+Authorization: Bearer <TOKEN_USUARIO>
+
+###
+
+### Criar assinatura
+POST http://localhost:3001/assinaturas
+Content-Type: application/json
+Authorization: Bearer <TOKEN_USUARIO>
+
+{
+    "usuarioId": "60c5a6e5-4b9c-4a44-8e15-ffe0e2cc7f45",
+    "revistaId": "c1047bb3-1d9e-4839-a36c-35ba69d9f010",
+    "data_inicio": "2024-06-01",
+    "data_fim": "2025-06-01",
+    "status": "ativa"
+}
+
+###
+
+### Atualizar assinatura
+PUT http://localhost:3001/assinaturas/1
+Content-Type: application/json
+Authorization: Bearer <TOKEN_USUARIO>
+
+{
+    "data_fim": "2025-12-01",
+    "status": "ativa"
+}
+
+###
+
+### Cancelar assinatura
+PATCH http://localhost:3001/assinaturas/1/cancelar
+Authorization: Bearer <TOKEN_USUARIO>

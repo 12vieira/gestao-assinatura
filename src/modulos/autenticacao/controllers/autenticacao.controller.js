@@ -31,7 +31,7 @@ class AutenticacaoController {
           .json({ msg: "É necessario informar email e senha para login" });
       }
       const usuario = await Usuario.findOne({
-        where: { id },
+        where: { email },
       });
       if (!usuario) {
         return res.status(401).json({ msg: "Usuario não encontrado!" });
@@ -44,6 +44,7 @@ class AutenticacaoController {
         nome: usuario.nome,
         email: usuario.email,
         papel: usuario.papel,
+        id: usuario.id
       };
 
       // gerando os tokens
@@ -61,7 +62,8 @@ class AutenticacaoController {
         tokenAcesso,
         nome: usuario.nome,
         email: usuario.email,
-        papel: usuario.papel
+        papel: usuario.papel,
+        id: usuario.id
       });
     } catch (error) {
       res.status(500).json({
@@ -87,7 +89,8 @@ class AutenticacaoController {
         const dadosUsuario = {
           nome: usuario.nome,
           usuario: usuario.email,
-          papel: usuario.papel
+          papel: usuario.papel,
+          id: usuario.id
         };
 
         // gerando o novo token

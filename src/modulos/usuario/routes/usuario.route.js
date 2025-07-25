@@ -1,5 +1,6 @@
 const express = require('express');
 const UsuarioController = require('../controllers/usuario.controller');
+const AutenticacaoMiddleware = require('../../../middleware/autenticacao.middleware')
 
 const router = express.Router();
 
@@ -7,6 +8,6 @@ const router = express.Router();
 router.post('/usuarios', UsuarioController.cadastrar);
 
 // Rota para perfil do usuário autenticado (requer autenticação)
-router.get('/usuarios/me', UsuarioController.perfil);
+router.get('/usuarios/me',AutenticacaoMiddleware.autenticarToken, UsuarioController.perfil);
 
 module.exports = router;

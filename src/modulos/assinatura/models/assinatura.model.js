@@ -5,12 +5,12 @@ const Assinatura = sequelize.define(
   "Assinatura",
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING(36),
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     usuarioId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING(36),
       allowNull: false,
       references: {
         model: "usuario",
@@ -18,7 +18,7 @@ const Assinatura = sequelize.define(
       },
     },
     revistaId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING(36),
       allowNull: false,
       references: {
         model: "revista",
