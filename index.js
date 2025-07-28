@@ -21,8 +21,6 @@ app.listen(port, async () => {
   try {
     await sequelize.authenticate();
     console.log("A conexão foi estabelecida com sucesso.");
-    await sequelize.sync({force: false, alter: false})
-    console.log('Tabelas sincronizadas!')
   } catch (error) {
     console.error("Não é possível conectar ao banco de dados:", error.message);
   }

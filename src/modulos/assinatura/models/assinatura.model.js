@@ -16,6 +16,7 @@ const Assinatura = sequelize.define(
         model: "usuario",
         key: "id",
       },
+      onUpdate:"CASCADE"
     },
     revistaId: {
       type: DataTypes.STRING(36),
