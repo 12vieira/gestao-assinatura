@@ -4,14 +4,13 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const senhaCriptografada = await bcrypt.hash('senha123', 10);
-
+  
     return queryInterface.bulkInsert('usuario', [
       {
         id: uuidv4(),
         nome: 'João Silva',
         email: 'joao.silva@example.com',
-        senha: senhaCriptografada,
+        senha: await bcrypt.hash('senha123', 10),
         papel: 'assinante',
         criado_em: new Date(),
         atualizado_em: new Date(),
@@ -20,7 +19,7 @@ module.exports = {
         id: uuidv4(),
         nome: 'Maria Oliveira',
         email: 'maria.oliveira@example.com',
-        senha: senhaCriptografada,
+        senha: await bcrypt.hash('senha123', 10),
         papel: 'funcionario',
         criado_em: new Date(),
         atualizado_em: new Date(),
@@ -29,7 +28,7 @@ module.exports = {
         id: uuidv4(),
         nome: 'Carlos Souza',
         email: 'carlos.souza@example.com',
-        senha: senhaCriptografada,
+        senha: await bcrypt.hash('senha123', 10),
         papel: 'admin',
         criado_em: new Date(),
         atualizado_em: new Date(),
@@ -38,7 +37,7 @@ module.exports = {
         id: uuidv4(),
         nome: 'Ana Costa',
         email: 'ana.costa@example.com',
-        senha: senhaCriptografada,
+        senha: await bcrypt.hash('senha123', 10),
         papel: 'assinante',
         criado_em: new Date(),
         atualizado_em: new Date(),
@@ -47,7 +46,7 @@ module.exports = {
         id: uuidv4(),
         nome: 'Pedro Santos',
         email: 'pedro.santos@example.com',
-        senha: senhaCriptografada,
+        senha: await bcrypt.hash('senha123', 10),
         papel: 'funcionario',
         criado_em: new Date(),
         atualizado_em: new Date(),

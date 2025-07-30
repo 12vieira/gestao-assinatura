@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       usuarioId: {
-        type: Sequelize.STRING(36),
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "usuario",
@@ -19,7 +19,7 @@ module.exports = {
         onUpdate: "CASCADE",
       },
       revistaId: {
-        type: Sequelize.STRING(36),
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "revista",

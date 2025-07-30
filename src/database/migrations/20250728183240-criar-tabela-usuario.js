@@ -32,7 +32,7 @@ module.exports = {
 
     // Adicionar índices para otimização
     await queryInterface.addIndex("usuario", ["email"]);
-    await queryInterface.addIndex('usuario', ['papel']);
+    await queryInterface.addIndex("usuario", ["papel"]);
   },
 
   async down(queryInterface, Sequelize) {
